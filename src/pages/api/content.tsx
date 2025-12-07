@@ -189,6 +189,50 @@ export const locationSize: AttributeList = {
     "Cavernous": 0.5
 }
 
+export const windowSize: AttributeList = {
+    "Small": 0.5,
+    "Average": 0.5,
+    "Large": 0.5
+}
+
+export const windowStyle: AttributeList = {
+    "Transom": 0.5,
+    "Picture": 0.5,
+    "Bay": 0.5,
+    "Bow": 0.5,
+    "Garden": 0.5,
+    "Glass block": 0.5,
+    "Skylight": 0.5,
+    "Round": 0.5,
+    "Arched": 0.5,
+    "Half-moon": 0.5,
+    "Dormer": 0.5,
+    "Stained-glass": 0.5
+}
+
+export const windowCondition: AttributeList = {
+    "Broken": 0.5,
+    "Shattered": 0.5,
+    "Cracked": 0.5,
+    "Flaking": 0.5,
+    "Splintered": 0.5,
+    "Loose": 0.5,
+    "Stuck": 0.5,
+    "Leaking": 0.5,
+    "Open": 0.5,
+    "Closed": 0.5,
+    "Ajar": 0.5,
+    "Dirty": 0.5,
+    "Grime-covered": 0.5,
+    "Smudged": 0.5,
+    "Dusty": 0.5,
+    "Clean": 0.5,
+    "Spotless": 0.5,
+    "Streaked": 0.5,
+    "Fogged": 0.5,
+    "Burned": 0.5
+}
+
 // other attributes
 // sounds
 // smells

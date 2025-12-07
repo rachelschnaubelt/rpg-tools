@@ -1,11 +1,14 @@
-import { lightingTypes, locationConditions, locationSize, locationTemperature, roomTypes } from "./content"
+import { lightingTypes, locationConditions, locationSize, locationTemperature, roomTypes, windowCondition, windowSize, windowStyle } from "./content"
 
 export const ATTRIBUTE_LIST_ENDPOINTS: {[key: string]: AttributeList} = {
     'room-types': roomTypes,
     'lighting-types': lightingTypes,
     'location-conditions': locationConditions,
     'location-temperature': locationTemperature,
-    'location-size': locationSize
+    'location-size': locationSize,
+    'window-size': windowSize,
+    'window-style': windowStyle,
+    'window-condition': windowCondition
 }
 
 export const INVALID_ENDPOINT_MESSAGE = "This endpoint is invalid. Please use a valid endpoint."
