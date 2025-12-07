@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+#__next {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
