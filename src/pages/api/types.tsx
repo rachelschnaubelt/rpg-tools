@@ -8,7 +8,8 @@ interface Room {
 interface Window {
     size: string,
     style: string,
-    condition: string
+    condition: string,
+    isLocked: boolean
 }
 
 interface AttributeList {

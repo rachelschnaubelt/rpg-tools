@@ -6,22 +6,23 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-    const queryMap: {[key: string]: string} = {
+    const queryMap: { [key: string]: string } = {
         size: 'window-size',
         style: 'window-style',
         condition: 'window-condition'
     };
 
-    const response: {[key: string]: string} = {}
+    const response: { [key: string]: string | boolean } = {}
 
-    for(const query in queryMap) {
+    for (const query in queryMap) {
         const endpoint = queryMap[query];
-        if(ATTRIBUTE_LIST_ENDPOINTS.hasOwnProperty(endpoint)) {
+        if (ATTRIBUTE_LIST_ENDPOINTS.hasOwnProperty(endpoint)) {
             const selected = getRandomElementFromWeightedList(ATTRIBUTE_LIST_ENDPOINTS[endpoint]);
             response[query] = selected;
         }
     }
 
-    res.status(200).json(response);
+    response.isLocked = Boolean(Math.floor(Math.random() * 2));
 
+    res.status(200).json(response);
 }
