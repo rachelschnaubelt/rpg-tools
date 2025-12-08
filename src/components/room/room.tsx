@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Button from "../button/button";
 import { setAttribute, timeout } from "../utils/utils";
 import Window from "../window/window";
@@ -10,11 +10,12 @@ export default function Room() {
     const [locationTemperature, setLocationTemperature] = useState('');
     const [locationSize, setLocationSize] = useState('');
     const [windowCount, setWindowCount] = useState(0);
-    const [opacity, setOpacity] = useState(0);
+    const roomContainerRef = useRef<HTMLDivElement>(null);
     const transitionDuration = 100;
 
     const updateRoom = async () => {
-        setOpacity(0);
+        console.log(roomContainerRef.current);
+        roomContainerRef.current?.classList.add('opacity-0');
 
         await timeout(transitionDuration);
 
@@ -26,7 +27,7 @@ export default function Room() {
         setWindowCount(Math.floor(Math.random() * 4));
 
         // await timeout(0);
-        setOpacity(1);
+        roomContainerRef.current?.classList.remove('opacity-0');
     }
 
     const getWindows = () => {
@@ -53,7 +54,7 @@ export default function Room() {
 
     return (
         <div className="flex flex-col min-h-full">
-            <div className={`transition duration-${transitionDuration} overflow-hidden opacity-${opacity} flex-1`}>
+            <div className={`transition duration-${transitionDuration} overflow-hidden opacity-0 flex-1`} ref={roomContainerRef}>
                 {roomType ? <p>Room type: {roomType}</p> : ''}
                 {lightingType ? <p>Lighting: {lightingType}</p> : ''}
                 {locationCondition ? <p>Condition: {locationCondition}</p> : ''}
