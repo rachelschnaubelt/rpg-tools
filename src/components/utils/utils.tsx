@@ -15,3 +15,7 @@ export const setAttribute = async (endpoint: string, setter: any) => {
         })
         .catch(err => setter(''));
 }
+
+export const timeout = (ms: number) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
