@@ -233,6 +233,55 @@ export const windowCondition: AttributeList = {
     "Burned": 0.5
 }
 
+export const exitSize: AttributeList = {
+    "Small": 0.5,
+    "Average": 0.5,
+    "Large": 0.5
+}
+
+export const exitStyle: AttributeList = {
+    "Panel": 0.5,
+    "Sliding": 0.5,
+    "Farm": 0.5,
+    "Barn": 0.5,
+    "Folding": 0.5,
+    "French": 0.5,
+    "Storm": 0.5,
+    "Round": 0.5,
+    "Roller": 0.5,
+    "Revolving": 0.5,
+    "Archway": 0.5
+}
+
+export const exitMaterial: AttributeList = {
+    "Metal": 0.5,
+    "Wood": 0.5,
+    "Glass": 0.5,
+    "Screen": 0.5
+}
+
+export const exitCondition: AttributeList = {
+    "Broken": 0.5,
+    "Shattered": 0.5,
+    "Cracked": 0.5,
+    "Flaking": 0.5,
+    "Splintered": 0.5,
+    "Loose": 0.5,
+    "Stuck": 0.5,
+    "Leaking": 0.5,
+    "Open": 0.5,
+    "Closed": 0.5,
+    "Ajar": 0.5,
+    "Dirty": 0.5,
+    "Grime-covered": 0.5,
+    "Smudged": 0.5,
+    "Dusty": 0.5,
+    "Clean": 0.5,
+    "Spotless": 0.5,
+    "Streaked": 0.5,
+    "Burned": 0.5
+}
+
 // other attributes
 // sounds
 // smells

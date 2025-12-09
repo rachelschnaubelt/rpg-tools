@@ -1,0 +1,29 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { ATTRIBUTE_LIST_ENDPOINTS } from '../../constants';
+import { getRandomElementFromWeightedList } from '../../utils';
+
+export default async function handler(
+    req: NextApiRequest,
+    res: NextApiResponse
+) {
+    const queryMap: { [key: string]: string } = {
+        size: 'exit-size',
+        style: 'exit-style',
+        condition: 'exit-condition',
+        material: 'exit-material'
+    };
+
+    const response: { [key: string]: string | boolean } = {}
+
+    for (const query in queryMap) {
+        const endpoint = queryMap[query];
+        if (ATTRIBUTE_LIST_ENDPOINTS.hasOwnProperty(endpoint)) {
+            const selected = getRandomElementFromWeightedList(ATTRIBUTE_LIST_ENDPOINTS[endpoint]);
+            response[query] = selected;
+        }
+    }
+
+    response.isLocked = Boolean(Math.floor(Math.random() * 2));
+
+    res.status(200).json(response);
+}

@@ -12,6 +12,14 @@ interface Window {
     isLocked: boolean
 }
 
+interface Exit {
+    size: string,
+    style: string,
+    condition: string,
+    material: string,
+    isLocked: boolean
+}
+
 interface AttributeList {
     [key: string]: number
 }
