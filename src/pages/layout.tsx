@@ -27,7 +27,7 @@ export default function RootLayout({
       lang="en"
       className={`h-full`}>
       <body
-        style={{ marginTop: `${headerHeight}px` }}
+        style={{ paddingTop: `${headerHeight}px` }}
         className="min-h-full flex">
         <Header
           className="px-8" ref={headerRef} />
