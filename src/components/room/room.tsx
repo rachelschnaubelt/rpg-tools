@@ -10,13 +10,14 @@ export default function Room() {
     const [locationCondition, setLocationCondition] = useState('');
     const [locationTemperature, setLocationTemperature] = useState('');
     const [locationSize, setLocationSize] = useState('');
+    const [soundsCount, setSoundsCount] = useState(0);
+    const [locationSounds, setLocationSounds] = useState<Set<string>>(new Set<string>);
     const [windowCount, setWindowCount] = useState(0);
     const [exitCount, setExitcount] = useState(0);
     const roomContainerRef = useRef<HTMLDivElement>(null);
     const transitionDuration = 100;
 
     const updateRoom = async () => {
-        console.log(roomContainerRef.current);
         roomContainerRef.current?.classList.add('opacity-0');
 
         await timeout(transitionDuration);
@@ -28,7 +29,22 @@ export default function Room() {
         await setAttribute('/api/attributes/random-weighted/location-size', setLocationSize);
         setWindowCount(Math.floor(Math.random() * 4));
         setExitcount(Math.ceil(Math.random() * 3));
-        
+        setSoundsCount(Math.floor(Math.random() * 3));
+        const tempSounds: Set<string> = new Set<string>;
+        const soundsEndpoint = '/api/attributes/random-weighted/location-sounds';
+
+        for (let i = 0; i < soundsCount; i++) {
+            const sound = await fetch(soundsEndpoint)
+                .then(res => {
+                    if (res.status !== 200) {
+                        return '';
+                    }
+                    return res.json()
+                });
+            tempSounds.add(sound);
+        }
+        setLocationSounds(tempSounds);
+
         // await timeout(0);
         roomContainerRef.current?.classList.remove('opacity-0');
     }
@@ -36,7 +52,7 @@ export default function Room() {
     const getWindows = () => {
         const windowArray = [];
         for (let i = 0; i < windowCount; i++) {
-            windowArray.push(<Window windowNumber={i + 1} />);
+            windowArray.push(<Window windowNumber={i + 1} key={i} />);
         }
         return windowArray;
     }
@@ -44,7 +60,7 @@ export default function Room() {
     const getExits = () => {
         const exitArray = [];
         for (let i = 0; i < exitCount; i++) {
-            exitArray.push(<Exit exitNumber={i + 1} />);
+            exitArray.push(<Exit exitNumber={i + 1} key={i} />);
         }
         return exitArray
     }
@@ -71,6 +87,7 @@ export default function Room() {
                 {locationCondition ? <p>Condition: {locationCondition}</p> : ''}
                 {locationTemperature ? <p>Temperature: {locationTemperature}</p> : ''}
                 {locationSize ? <p>Size: {locationSize}</p> : ''}
+                {locationSounds.size > 0 ? <p>Sounds: {Array.from(locationSounds).join(', ')}</p> : ''}
                 <p className="font-bold">{getCountLabel(windowCount, 'window')}</p>
                 <div className="flex gap-4">
                     {getWindows()}

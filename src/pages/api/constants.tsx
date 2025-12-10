@@ -1,4 +1,4 @@
-import { exitCondition, exitMaterial, exitSize, exitStyle, lightingTypes, locationConditions, locationSize, locationTemperature, roomTypes, windowCondition, windowSize, windowStyle } from "./content"
+import { exitCondition, exitMaterial, exitSize, exitStyle, lightingTypes, locationConditions, locationSize, locationSounds, locationTemperature, roomTypes, windowCondition, windowSize, windowStyle } from "./content"
 
 export const ATTRIBUTE_LIST_ENDPOINTS: {[key: string]: AttributeList} = {
     'room-types': roomTypes,
@@ -6,6 +6,7 @@ export const ATTRIBUTE_LIST_ENDPOINTS: {[key: string]: AttributeList} = {
     'location-conditions': locationConditions,
     'location-temperature': locationTemperature,
     'location-size': locationSize,
+    'location-sounds': locationSounds,
     'window-size': windowSize,
     'window-style': windowStyle,
     'window-condition': windowCondition,

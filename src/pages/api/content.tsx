@@ -189,6 +189,24 @@ export const locationSize: AttributeList = {
     "Cavernous": 0.5
 }
 
+export const locationSounds: AttributeList = {
+    "Dripping water": 0.5,
+    "Rain": 0.5,
+    "Wind": 0.5,
+    "Birds": 0.5,
+    "Creaking": 0.5,
+    "Rustling": 0.5,
+    "Humming": 0.5,
+    "Buzzing": 0.5,
+    "Beeping": 0.5,
+    "Footsteps": 0.5,
+    "Whispering": 0.5,
+    "Conversation": 0.5,
+    "Talking": 0.5,
+    "Silence": 0.5,
+    "Music": 0.5
+}
+
 export const windowSize: AttributeList = {
     "Small": 0.5,
     "Average": 0.5,
