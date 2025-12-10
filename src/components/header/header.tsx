@@ -1,13 +1,15 @@
 import styles from "./header.module.scss";
 
 type Props = {
-    className?: string
+    className?: string,
+    ref?: React.RefObject<HTMLDivElement | null>
 }
 
-export default function Header({className}: Props) {
+export default function Header({className, ref}: Props) {
 
     return (
         <header 
+            ref={ref}
             className={`header py-3 border-b-1 fixed top-0 left-0 right-0 bg-white ${className} ${styles.header}`}>
             <h1 
                 className={`text-2xl hover:scale-105 origin-left duration-300 ${styles.heading}`}>
