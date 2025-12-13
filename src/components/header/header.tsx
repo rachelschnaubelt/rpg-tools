@@ -10,7 +10,7 @@ export default function Header({className, ref}: Props) {
     return (
         <header 
             ref={ref}
-            className={`header py-3 border-b-1 fixed top-0 left-0 right-0 bg-white ${className} ${styles.header}`}>
+            className={`header py-3 border-b-1 fixed top-0 left-0 right-0 bg-white z-1 ${className} ${styles.header}`}>
             <h1 
                 className={`text-2xl hover:scale-105 origin-left duration-300 ${styles.heading}`}>
                 RPG Tools

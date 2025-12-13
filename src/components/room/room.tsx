@@ -3,9 +3,8 @@ import Button from "../button/button";
 import { setAttribute, timeout } from "../utils/utils";
 import Window from "../window/window";
 import Exit from "../exit/exit";
-import styles from './room.module.scss';
-import { locationScent } from "@/pages/api/content";
 import NPC from "../npc/npc";
+import Creature from "../creature/creature";
 
 export default function Room() {
     const [roomType, setRoomType] = useState('');
@@ -20,6 +19,7 @@ export default function Room() {
     const [windowCount, setWindowCount] = useState(0);
     const [exitCount, setExitcount] = useState(0);
     const [npcCount, setNpcCount] = useState(0);
+    const [creatureCount, setCreatureCount] = useState(0);
     const roomContainerRef = useRef<HTMLDivElement>(null);
     const transitionDuration = 100;
 
@@ -39,6 +39,7 @@ export default function Room() {
         setExitcount(Math.ceil(Math.random() * 3));
         setSoundsCount(Math.floor(Math.random() * 3));
         setNpcCount(Math.floor(Math.random()*4));
+        setCreatureCount(Math.floor(Math.random()*3));
         const tempSounds: Set<string> = new Set<string>;
         const soundsEndpoint = '/api/attributes/random-weighted/location-sounds';
 
@@ -119,6 +120,10 @@ export default function Room() {
                 <p className="font-bold">{getCountLabel(npcCount, 'NPC')}</p>
                 <div className="flex gap-4">
                     {getComponentArray(npcCount, NPC)}
+                </div>
+                <p className="font-bold">{getCountLabel(creatureCount, 'Creature')}</p>
+                <div className="flex gap-4">
+                    {getComponentArray(creatureCount, Creature)}
                 </div>
             </div>
             <div className="m-auto">

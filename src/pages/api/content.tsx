@@ -337,7 +337,23 @@ export const npcClasses: AttributeList = {
     "Rogue": 0.5,
     "Sorcerer": 0.5,
     "Warlock": 0.5,
-    "Wizard": 0.5
+    "Wizard": 0.5,
+    "Bandit": 0.5,
+    "Berserker": 0.5,
+    "Commoner": 0.5,
+    "Cultist": 0.5,
+    "Acolyte": 0.5,
+    "Knight": 0.5,
+    "Mage": 0.5,
+    "Noble": 0.5,
+    "Pirate": 0.5,
+    "Priest": 0.5,
+    "Scout": 0.5,
+    "Guard": 0.5,
+    "Thug": 0.5,
+    "Vampire": 0.5,
+    "Veteran": 0.5,
+    "Warrior": 0.5,
 }
 
 export const npcRaces: AttributeList = {
@@ -384,11 +400,98 @@ export const npcRaces: AttributeList = {
     "Half-orc": 0.5,
 }
 
+export const creatureType = {
+    "Dragon": 0.5,
+    "Sphinx": 0.5,
+    "Construct": 0.5,
+    "Living plant": 0.5,
+    "Badger": 0.5,
+    "Bat": 0.5,
+    "Devil": 0.5,
+    "Demon": 0.5,
+    "Bear": 0.5,
+    "Ooze": 0.5,
+    "Dog": 0.5,
+    "Cat": 0.5,
+    "Hawk": 0.5,
+    "Chimera": 0.5,
+    "Snake": 0.5,
+    "Turtle": 0.5,
+    "Dryad": 0.5,
+    "Eagle": 0.5,
+    "Elemental": 0.5,
+    "Gargoyle": 0.5,
+    "Gelatinous cube": 0.5,
+    "Ghost": 0.5,
+    "Goblin": 0.5,
+    "Hag": 0.5,
+    "Griffon": 0.5,
+    "Harpy": 0.5,
+    "Hound": 0.5,
+    "Homunculus": 0.5,
+    "Mephit": 0.5,
+    "Imp": 0.5,
+    "Kobold": 0.5,
+    "Lizard": 0.5,
+    "Manticore": 0.5,
+    "Mimic": 0.5,
+    "Mummy": 0.5,
+    "Ogre": 0.5,
+    "Owl": 0.5,
+    "Panther": 0.5,
+    "Pegasus": 0.5,
+    "Rat": 0.5,
+    "Raven": 0.5,
+    "Satyr": 0.5,
+    "Shadow": 0.5,
+    "Skelton": 0.5,
+    "Specter": 0.5,
+    "Fairy": 0.5,
+    "Tiger": 0.5,
+    "Treant": 0.5,
+    "Troll": 0.5,
+    "Unicorn": 0.5,
+    "Werewolf": 0.5,
+    "Wolf": 0.5,
+    "Wraith": 0.5,
+    "Zombie": 0.5
+}
+
+export const creatureSize = {
+    "Average": 0.5,
+    "Huge": 0.5,
+    "Small": 0.5,
+    "Runty": 0.5,
+    "Tiny": 0.5,
+    "Slight": 0.5,
+    "Heavy": 0.5
+}
+
+export const creatureCondition = {
+    "Scarred": 0.5,
+    "Blind": 0.5,
+    "Deaf": 0.5,
+    "Paralyzed": 0.5,
+    "Missing a limb": 0.5,
+    "Invisible": 0.5,
+    "Poisoned": 0.5,
+    "Restrained": 0.5,
+    "Unconscious": 0.5,
+    "Exhausted": 0.5,
+    "Asleep": 0.5,
+    "Normal": 0.5
+}
+
+export const creatureBehavior = {
+    "Charmed": 0.5,
+    "Frightened": 0.5,
+    "Aggressive": 0.5,
+    "Docile": 0.5,
+    "Friendly": 0.5,
+    "Tamed": 0.5,
+}
+
 // other attributes
-// sounds
-// smells
-// exits
-// people
 // creatures
 // significant items
 // unique traits (larger than it seems, etc)

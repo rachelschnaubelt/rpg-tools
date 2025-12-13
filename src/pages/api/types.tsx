@@ -27,6 +27,14 @@ interface NPC {
     race: string
 }
 
+interface Creature {
+    size: string,
+    type: string,
+    condition: number,
+    behavior: string
+    healthPercentage: number
+}
+
 interface AttributeList {
     [key: string]: number
 }
