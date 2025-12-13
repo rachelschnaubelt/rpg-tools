@@ -171,7 +171,7 @@ export const locationTemperature: AttributeList = {
 }
 
 export const locationSize: AttributeList = {
-    "Large": 0.5, 
+    "Large": 0.5,
     "Small": 0.5,
     "Spacious": 0.5,
     "Compact": 0.5,
@@ -304,6 +304,76 @@ export const locationScent: AttributeList = {
     "Musty": 0.5,
     "Smoky": 0.5,
     "Pleasant": 0.5
+}
+
+export const npcNames: AttributeList = {
+    "Cregdec": 0.5,
+    "Eularia Fajardo": 0.5,
+    "Vav Baxrot": 0.5,
+    "Berta Ahle": 0.5,
+    "Gwyn": 0.5,
+    "Renni": 0.5,
+    "Aliyya al-Naqvi": 0.5
+}
+
+export const npcClasses: AttributeList = {
+    "Artificer": 0.5,
+    "Barbarian": 0.5,
+    "Bard": 0.5,
+    "Cleric": 0.5,
+    "Druid": 0.5,
+    "Fighter": 0.5,
+    "Monk": 0.5,
+    "Paladin": 0.5,
+    "Ranger": 0.5,
+    "Rogue": 0.5,
+    "Sorcerer": 0.5,
+    "Warlock": 0.5,
+    "Wizard": 0.5
+}
+
+export const npcRaces: AttributeList = {
+    "Aasimar": 0.5,
+    "Dragonborn": 0.5,
+    "Dwarf": 0.5,
+    "Elf": 0.5,
+    "Gnome": 0.5,
+    "Goliath": 0.5,
+    "Halfling": 0.5,
+    "Human": 0.5,
+    "Orc": 0.5,
+    "Tiefling": 0.5,
+    "Dhampir": 0.5,
+    "Faerie": 0.5,
+    "Flamekin": 0.5,
+    "Shifter": 0.5,
+    "Changeling": 0.5,
+    "Warforged": 0.5,
+    "Aarakocra": 0.5,
+    "Genasi": 0.5,
+    "Bugbear": 0.5,
+    "Centaur": 0.5,
+    "Deep Gnome": 0.5,
+    "Duergar": 0.5,
+    "Eladrin": 0.5,
+    "Firbolg": 0.5,
+    "Githyanki": 0.5,
+    "Githerzai": 0.5,
+    "Goblin": 0.5,
+    "Hobgoblin": 0.5,
+    "Kenku": 0.5,
+    "Kobold": 0.5,
+    "Lizardfolk": 0.5,
+    "Minotaur": 0.5,
+    "Satyr": 0.5,
+    "Tabaxi": 0.5,
+    "Tortle": 0.5,
+    "Triton": 0.5,
+    "Yuan-ti": 0.5,
+    "Leonin": 0.5,
+    "Loxodon": 0.5,
+    "Half-elf": 0.5,
+    "Half-orc": 0.5,
 }
 
 // other attributes

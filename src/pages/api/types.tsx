@@ -20,6 +20,13 @@ interface Exit {
     isLocked: boolean
 }
 
+interface NPC {
+    name: string,
+    class: string,
+    level: number,
+    race: string
+}
+
 interface AttributeList {
     [key: string]: number
 }

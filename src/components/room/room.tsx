@@ -5,6 +5,7 @@ import Window from "../window/window";
 import Exit from "../exit/exit";
 import styles from './room.module.scss';
 import { locationScent } from "@/pages/api/content";
+import NPC from "../npc/npc";
 
 export default function Room() {
     const [roomType, setRoomType] = useState('');
@@ -17,6 +18,7 @@ export default function Room() {
     const [locationSounds, setLocationSounds] = useState<Set<string>>(new Set<string>);
     const [windowCount, setWindowCount] = useState(0);
     const [exitCount, setExitcount] = useState(0);
+    const [npcCount, setNpcCount] = useState(0);
     const roomContainerRef = useRef<HTMLDivElement>(null);
     const transitionDuration = 100;
 
@@ -34,6 +36,7 @@ export default function Room() {
         setWindowCount(Math.floor(Math.random() * 4));
         setExitcount(Math.ceil(Math.random() * 3));
         setSoundsCount(Math.floor(Math.random() * 3));
+        setNpcCount(Math.floor(Math.random()*4));
         const tempSounds: Set<string> = new Set<string>;
         const soundsEndpoint = '/api/attributes/random-weighted/location-sounds';
 
@@ -53,22 +56,17 @@ export default function Room() {
         roomContainerRef.current?.classList.remove('opacity-0');
     }
 
-    const getWindows = () => {
-        const windowArray = [];
-        for (let i = 0; i < windowCount; i++) {
-            windowArray.push(<Window windowNumber={i + 1} key={i} />);
+    const getComponentArray = (count: number, Component: any) => {
+        const arr = [];
+        for (let i = 0; i < count; i++) {
+            let props = {
+                itemNumber: i + 1
+            }
+            arr.push(<Component key={i} {...props}/>)
         }
-        return windowArray;
+        return arr;
     }
-
-    const getExits = () => {
-        const exitArray = [];
-        for (let i = 0; i < exitCount; i++) {
-            exitArray.push(<Exit exitNumber={i + 1} key={i} />);
-        }
-        return exitArray
-    }
-
+    
     const getCountLabel = (count: number, noun: string) => {
         if (count === 0) {
             return `No ${noun}s`;
@@ -109,11 +107,15 @@ export default function Room() {
                 </div>
                 <p className="font-bold">{getCountLabel(windowCount, 'window')}</p>
                 <div className="flex gap-4">
-                    {getWindows()}
+                    {getComponentArray(windowCount, Window)}
                 </div>
                 <p className="font-bold">{getCountLabel(exitCount, 'exit')}</p>
                 <div className="flex gap-4">
-                    {getExits()}
+                    {getComponentArray(exitCount, Exit)}
+                </div>
+                <p className="font-bold">{getCountLabel(npcCount, 'NPC')}</p>
+                <div className="flex gap-4">
+                    {getComponentArray(npcCount, NPC)}
                 </div>
             </div>
             <div className="m-auto">

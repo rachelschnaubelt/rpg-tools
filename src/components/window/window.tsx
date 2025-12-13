@@ -2,10 +2,10 @@ import { useEffect, useState } from "react"
 import { setAttribute } from "../utils/utils";
 
 type Props = {
-    windowNumber?: number
+    itemNumber?: number,
 }
 
-export default function Window({ windowNumber }: Props) {
+export default function Window({ itemNumber }: Props) {
     const [windowProps, setWindowProps] = useState<Window>();
 
     const updateWindow = async () => {
@@ -22,7 +22,7 @@ export default function Window({ windowNumber }: Props) {
 
     return (
         <div>
-            <p>Window {windowNumber} - {windowProps.isLocked ? "Locked" : "Unlocked"}</p>
+            <p>Window {itemNumber} - {windowProps.isLocked ? "Locked" : "Unlocked"}</p>
             {windowProps.size ? <p>Size: {windowProps.size}</p> : ''}
             {windowProps.style ? <p>Style: {windowProps.style}</p> : ''}
             {windowProps.condition ? <p>Condition: {windowProps.condition}</p> : ''}
