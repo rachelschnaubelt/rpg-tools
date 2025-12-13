@@ -4,6 +4,7 @@ import { setAttribute, timeout } from "../utils/utils";
 import Window from "../window/window";
 import Exit from "../exit/exit";
 import styles from './room.module.scss';
+import { locationScent } from "@/pages/api/content";
 
 export default function Room() {
     const [roomType, setRoomType] = useState('');
@@ -11,6 +12,7 @@ export default function Room() {
     const [locationCondition, setLocationCondition] = useState('');
     const [locationTemperature, setLocationTemperature] = useState('');
     const [locationSize, setLocationSize] = useState('');
+    const [locationScent, setLocationScent] = useState('');
     const [soundsCount, setSoundsCount] = useState(0);
     const [locationSounds, setLocationSounds] = useState<Set<string>>(new Set<string>);
     const [windowCount, setWindowCount] = useState(0);
@@ -28,6 +30,7 @@ export default function Room() {
         await setAttribute('/api/attributes/random-weighted/location-conditions', setLocationCondition);
         await setAttribute('/api/attributes/random-weighted/location-temperature', setLocationTemperature);
         await setAttribute('/api/attributes/random-weighted/location-size', setLocationSize);
+        await setAttribute('/api/attributes/random-weighted/location-scent', setLocationScent);
         setWindowCount(Math.floor(Math.random() * 4));
         setExitcount(Math.ceil(Math.random() * 3));
         setSoundsCount(Math.floor(Math.random() * 3));
@@ -101,6 +104,7 @@ export default function Room() {
                     {getAttributeContainer(locationCondition, 'Condition')}
                     {getAttributeContainer(locationTemperature, 'Temperature')}
                     {getAttributeContainer(locationSize, 'Size')}
+                    {getAttributeContainer(locationScent, 'Scent')}
                     {getAttributeContainer(Array.from(locationSounds).join(', '), 'Sounds')}
                 </div>
                 <p className="font-bold">{getCountLabel(windowCount, 'window')}</p>

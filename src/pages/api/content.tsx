@@ -300,6 +300,12 @@ export const exitCondition: AttributeList = {
     "Burned": 0.5
 }
 
+export const locationScent: AttributeList = {
+    "Musty": 0.5,
+    "Smoky": 0.5,
+    "Pleasant": 0.5
+}
+
 // other attributes
 // sounds
 // smells
