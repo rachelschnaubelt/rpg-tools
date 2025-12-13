@@ -1,4 +1,4 @@
-import { exitCondition, exitMaterial, exitSize, exitStyle, lightingTypes, locationConditions, locationScent, locationSize, locationSounds, locationTemperature, npcClasses, npcNames, npcRaces, roomTypes, windowCondition, windowSize, windowStyle } from "./content"
+import { exitCondition, exitMaterial, exitSize, exitStyle, lightingTypes, locationAtmospheres, locationConditions, locationScent, locationSize, locationSounds, locationTemperature, npcClasses, npcNames, npcRaces, roomTypes, windowCondition, windowSize, windowStyle } from "./content"
 
 export const ATTRIBUTE_LIST_ENDPOINTS: {[key: string]: AttributeList} = {
     'room-types': roomTypes,
@@ -15,6 +15,7 @@ export const ATTRIBUTE_LIST_ENDPOINTS: {[key: string]: AttributeList} = {
     'exit-condition': exitCondition,
     'exit-material': exitMaterial,
     'location-scent': locationScent,
+    'location-atmospheres': locationAtmospheres,
     'npc-names': npcNames,
     'npc-classes': npcClasses,
     'npc-races': npcRaces

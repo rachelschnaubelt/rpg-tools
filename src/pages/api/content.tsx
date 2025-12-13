@@ -306,6 +306,14 @@ export const locationScent: AttributeList = {
     "Pleasant": 0.5
 }
 
+export const locationAtmospheres: AttributeList = {
+    "Spooky": 0.5,
+    "Eerie": 0.5,
+    "Calm": 0.5,
+    "Relaxing": 0.5,
+    "Energetic": 0.5,
+}
+
 export const npcNames: AttributeList = {
     "Cregdec": 0.5,
     "Eularia Fajardo": 0.5,
