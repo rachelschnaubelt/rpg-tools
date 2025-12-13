@@ -3,6 +3,7 @@ import Button from "../button/button";
 import { setAttribute, timeout } from "../utils/utils";
 import Window from "../window/window";
 import Exit from "../exit/exit";
+import styles from './room.module.scss';
 
 export default function Room() {
     const [roomType, setRoomType] = useState('');
@@ -75,6 +76,18 @@ export default function Room() {
         return `${count} ${noun}s`;
     }
 
+    const getAttributeContainer = (attribute: string, attributeLabel: string) => {
+        if (!attribute) {
+            return '';
+        }
+        return (
+            <div className={'relative'}>
+                <p className={`absolute text-xs top-[-.5rem] opacity-70`}>{attributeLabel}</p>
+                <p>{attribute}</p>
+            </div>
+        )
+    }
+
     useEffect(() => {
         updateRoom();
     }, [])
@@ -82,12 +95,14 @@ export default function Room() {
     return (
         <div className="flex flex-col min-h-full">
             <div className={`transition duration-${transitionDuration} overflow-hidden opacity-0 flex-1`} ref={roomContainerRef}>
-                {roomType ? <p>Room type: {roomType}</p> : ''}
-                {lightingType ? <p>Lighting: {lightingType}</p> : ''}
-                {locationCondition ? <p>Condition: {locationCondition}</p> : ''}
-                {locationTemperature ? <p>Temperature: {locationTemperature}</p> : ''}
-                {locationSize ? <p>Size: {locationSize}</p> : ''}
-                {locationSounds.size > 0 ? <p>Sounds: {Array.from(locationSounds).join(', ')}</p> : ''}
+                {roomType ? <h3 className='text-xl text-center'>{roomType}</h3> : ''}
+                <div className='flex gap-4 justify-between mt-4'>
+                    {getAttributeContainer(lightingType, 'Lighting')}
+                    {getAttributeContainer(locationCondition, 'Condition')}
+                    {getAttributeContainer(locationTemperature, 'Temperature')}
+                    {getAttributeContainer(locationSize, 'Size')}
+                    {getAttributeContainer(Array.from(locationSounds).join(', '), 'Sounds')}
+                </div>
                 <p className="font-bold">{getCountLabel(windowCount, 'window')}</p>
                 <div className="flex gap-4">
                     {getWindows()}
