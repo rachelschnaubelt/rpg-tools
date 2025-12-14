@@ -35,6 +35,12 @@ interface Creature {
     healthPercentage: number
 }
 
+interface Item {
+    type: string,
+    value: number,
+    condition: string
+}
+
 interface AttributeList {
     [key: string]: number
 }

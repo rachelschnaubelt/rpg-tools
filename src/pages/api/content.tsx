@@ -491,7 +491,35 @@ export const creatureBehavior = {
     "Tamed": 0.5,
 }
 
+export const itemType: AttributeList = {
+    "Weapon": 0.5,
+    "Armor": 0.5,
+    "Table": 0.5,
+    "Plant": 0.5,
+    "Book": 0.5,
+    "Scroll": 0.5,
+    "Crate": 0.5,
+    "Chest": 0.5,
+    "Bookshelf": 0.5,
+    "Chair": 0.5,
+    "Desk": 0.5,
+    "Gemstone": 0.5,
+    "Jewel": 0.5,
+    "Painting": 0.5
+}
+
+export const itemCondition: AttributeList = {
+    "Broken": 0.5,
+    "Shattered": 0.5,
+    "Cracked": 0.5,
+    "Flaking": 0.5,
+    "Splintered": 0.5,
+    "Dirty": 0.5,
+    "Grime-covered": 0.5,
+    "Dusty": 0.5,
+    "Clean": 0.5,
+    "Burned": 0.5
+}
+
 // other attributes
-// creatures
-// significant items
 // unique traits (larger than it seems, etc)

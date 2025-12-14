@@ -5,6 +5,7 @@ import Window from "../window/window";
 import Exit from "../exit/exit";
 import NPC from "../npc/npc";
 import Creature from "../creature/creature";
+import Item from "../item/item";
 
 export default function Room() {
     const [roomType, setRoomType] = useState('');
@@ -19,6 +20,7 @@ export default function Room() {
     const [windowCount, setWindowCount] = useState(0);
     const [exitCount, setExitcount] = useState(0);
     const [npcCount, setNpcCount] = useState(0);
+    const [itemCount, setItemCount] = useState(0);
     const [creatureCount, setCreatureCount] = useState(0);
     const roomContainerRef = useRef<HTMLDivElement>(null);
     const transitionDuration = 100;
@@ -40,6 +42,7 @@ export default function Room() {
         setSoundsCount(Math.floor(Math.random() * 3));
         setNpcCount(Math.floor(Math.random()*4));
         setCreatureCount(Math.floor(Math.random()*3));
+        setItemCount(Math.floor(Math.random()*3));
         const tempSounds: Set<string> = new Set<string>;
         const soundsEndpoint = '/api/attributes/random-weighted/location-sounds';
 
@@ -121,9 +124,13 @@ export default function Room() {
                 <div className="flex gap-4">
                     {getComponentArray(npcCount, NPC)}
                 </div>
-                <p className="font-bold">{getCountLabel(creatureCount, 'Creature')}</p>
+                <p className="font-bold">{getCountLabel(creatureCount, 'creature')}</p>
                 <div className="flex gap-4">
                     {getComponentArray(creatureCount, Creature)}
+                </div>
+                <p className="font-bold">{getCountLabel(itemCount, 'item')}</p>
+                <div className="flex gap-4">
+                    {getComponentArray(itemCount, Item)}
                 </div>
             </div>
             <div className="m-auto">
