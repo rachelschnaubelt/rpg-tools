@@ -7,6 +7,7 @@ import NPC from "../npc/npc";
 import Creature from "../creature/creature";
 import Item from "../item/item";
 import Trap from "../trap/trap";
+import Accordion from "../accordion/accordion";
 
 export default function Room() {
     const [roomType, setRoomType] = useState('');
@@ -44,10 +45,10 @@ export default function Room() {
         setWindowCount(Math.floor(Math.random() * 4));
         setExitcount(Math.ceil(Math.random() * 3));
         setSoundsCount(Math.floor(Math.random() * 3));
-        setNpcCount(Math.floor(Math.random()*4));
-        setCreatureCount(Math.floor(Math.random()*3));
-        setItemCount(Math.floor(Math.random()*3));
-        setTrapCount(Math.floor(Math.random()*2));
+        setNpcCount(Math.floor(Math.random() * 4));
+        setCreatureCount(Math.floor(Math.random() * 3));
+        setItemCount(Math.floor(Math.random() * 3));
+        setTrapCount(Math.floor(Math.random() * 2));
         const tempSounds: Set<string> = new Set<string>;
         const soundsEndpoint = '/api/attributes/random-weighted/location-sounds';
 
@@ -67,17 +68,21 @@ export default function Room() {
         roomContainerRef.current?.classList.remove('opacity-0');
     }
 
-    const getComponentArray = (count: number, Component: any) => {
+    const getComponentList = (count: number, Component: any) => {
+        if(count <= 0) {
+            return '';
+        }
         const arr = [];
         for (let i = 0; i < count; i++) {
             let props = {
                 itemNumber: i + 1
             }
-            arr.push(<Component key={i} {...props}/>)
+            arr.push(<Component key={i} {...props} />)
         }
-        return arr;
+
+        return <div className="flex gap-4">{arr}</div>;
     }
-    
+
     const getCountLabel = (count: number, noun: string) => {
         if (count === 0) {
             return `No ${noun}s`;
@@ -118,30 +123,24 @@ export default function Room() {
                     {getAttributeContainer(Array.from(locationSounds).join(', '), 'Sounds')}
                     {getAttributeContainer(locationUniqueTrait, 'Unique trait')}
                 </div>
-                <p className="font-bold">{getCountLabel(windowCount, 'window')}</p>
-                <div className="flex gap-4">
-                    {getComponentArray(windowCount, Window)}
-                </div>
-                <p className="font-bold">{getCountLabel(exitCount, 'exit')}</p>
-                <div className="flex gap-4">
-                    {getComponentArray(exitCount, Exit)}
-                </div>
-                <p className="font-bold">{getCountLabel(npcCount, 'NPC')}</p>
-                <div className="flex gap-4">
-                    {getComponentArray(npcCount, NPC)}
-                </div>
-                <p className="font-bold">{getCountLabel(creatureCount, 'creature')}</p>
-                <div className="flex gap-4">
-                    {getComponentArray(creatureCount, Creature)}
-                </div>
-                <p className="font-bold">{getCountLabel(itemCount, 'item')}</p>
-                <div className="flex gap-4">
-                    {getComponentArray(itemCount, Item)}
-                </div>
-                <p className="font-bold">{getCountLabel(trapCount, 'trap')}</p>
-                <div className="flex gap-4">
-                    {getComponentArray(trapCount, Trap)}
-                </div>
+                <Accordion title={getCountLabel(windowCount, 'window')}>
+                    {getComponentList(windowCount, Window)}
+                </Accordion>
+                <Accordion title={getCountLabel(exitCount, 'exit')}>
+                    {getComponentList(exitCount, Exit)}
+                </Accordion>
+                <Accordion title={getCountLabel(npcCount, 'NPC')}>
+                    {getComponentList(npcCount, NPC)}
+                </Accordion>
+                <Accordion title={getCountLabel(creatureCount, 'creature')}>
+                    {getComponentList(creatureCount, Creature)}
+                </Accordion>
+                <Accordion title={getCountLabel(itemCount, 'item')}>
+                    {getComponentList(itemCount, Item)}
+                </Accordion>
+                <Accordion title={getCountLabel(trapCount, 'trap')}>
+                    {getComponentList(trapCount, Trap)}
+                </Accordion>
             </div>
             <div className="m-auto">
                 <Button onClick={updateRoom}>Regenerate Room</Button>
