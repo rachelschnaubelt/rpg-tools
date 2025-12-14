@@ -1,4 +1,4 @@
-import { creatureBehavior, creatureCondition, creatureSize, creatureType, exitCondition, exitMaterial, exitSize, exitStyle, itemCondition, itemType, lightingTypes, locationAtmospheres, locationConditions, locationScent, locationSize, locationSounds, locationTemperature, npcClasses, npcNames, npcRaces, roomTypes, trapDanger, trapEffect, trapTrigger, trapType, windowCondition, windowSize, windowStyle } from "./content"
+import { creatureBehavior, creatureCondition, creatureSize, creatureType, exitCondition, exitMaterial, exitSize, exitStyle, itemCondition, itemType, lightingTypes, locationAtmospheres, locationConditions, locationScent, locationSize, locationSounds, locationTemperature, locationUniqueTraits, npcClasses, npcNames, npcRaces, roomTypes, trapDanger, trapEffect, trapTrigger, trapType, windowCondition, windowSize, windowStyle } from "./content"
 
 export const ATTRIBUTE_LIST_ENDPOINTS: {[key: string]: AttributeList} = {
     'room-types': roomTypes,
@@ -28,7 +28,8 @@ export const ATTRIBUTE_LIST_ENDPOINTS: {[key: string]: AttributeList} = {
     'trap-type': trapType,
     'trap-trigger': trapTrigger,
     'trap-effect': trapEffect,
-    'trap-danger': trapDanger
+    'trap-danger': trapDanger,
+    'location-unique-traits': locationUniqueTraits
 }
 
 export const INVALID_ENDPOINT_MESSAGE = "This endpoint is invalid. Please use a valid endpoint."

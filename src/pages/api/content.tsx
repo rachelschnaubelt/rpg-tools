@@ -506,7 +506,9 @@ export const itemType: AttributeList = {
     "Gemstone": 0.5,
     "Jewel": 0.5,
     "Painting": 0.5,
-    "Key": 0.5
+    "Key": 0.5,
+    "Fountain": 0.5,
+    "Mirror": 0.5,
 }
 
 export const itemCondition: AttributeList = {
@@ -547,5 +549,15 @@ export const trapDanger: AttributeList = {
     "Deadly": 0.5
 }
 
-// other attributes
-// unique traits (larger than it seems, etc)
+export const locationUniqueTraits: AttributeList = {
+    "Everything is colorless": 0.5,
+    "Filled with smoke": 0.5,
+    "Shifting patterns": 0.5,
+    "Uneven flooring": 0.5,
+    "Everything is made of glass": 0.5,
+    "The area is shaking slightly": 0.5,
+    "Quicksand floor": 0.5,
+    "Low gravity": 0.5,
+    "High gravity": 0.5,
+    "The area is larger than it seems": 0.5,
+}

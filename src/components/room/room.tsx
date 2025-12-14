@@ -16,6 +16,7 @@ export default function Room() {
     const [locationSize, setLocationSize] = useState('');
     const [locationScent, setLocationScent] = useState('');
     const [locationAtmosphere, setLocationAtmosphere] = useState('');
+    const [locationUniqueTrait, setLocationUniqueTrait] = useState('');
     const [soundsCount, setSoundsCount] = useState(0);
     const [locationSounds, setLocationSounds] = useState<Set<string>>(new Set<string>);
     const [windowCount, setWindowCount] = useState(0);
@@ -39,6 +40,7 @@ export default function Room() {
         await setAttribute('/api/attributes/random-weighted/location-size', setLocationSize);
         await setAttribute('/api/attributes/random-weighted/location-scent', setLocationScent);
         await setAttribute('/api/attributes/random-weighted/location-atmospheres', setLocationAtmosphere);
+        await setAttribute('/api/attributes/random-weighted/location-unique-traits', setLocationUniqueTrait);
         setWindowCount(Math.floor(Math.random() * 4));
         setExitcount(Math.ceil(Math.random() * 3));
         setSoundsCount(Math.floor(Math.random() * 3));
@@ -114,6 +116,7 @@ export default function Room() {
                     {getAttributeContainer(locationAtmosphere, 'Atmosphere')}
                     {getAttributeContainer(locationScent, 'Scent')}
                     {getAttributeContainer(Array.from(locationSounds).join(', '), 'Sounds')}
+                    {getAttributeContainer(locationUniqueTrait, 'Unique trait')}
                 </div>
                 <p className="font-bold">{getCountLabel(windowCount, 'window')}</p>
                 <div className="flex gap-4">
