@@ -6,6 +6,7 @@ import Exit from "../exit/exit";
 import NPC from "../npc/npc";
 import Creature from "../creature/creature";
 import Item from "../item/item";
+import Trap from "../trap/trap";
 
 export default function Room() {
     const [roomType, setRoomType] = useState('');
@@ -21,6 +22,7 @@ export default function Room() {
     const [exitCount, setExitcount] = useState(0);
     const [npcCount, setNpcCount] = useState(0);
     const [itemCount, setItemCount] = useState(0);
+    const [trapCount, setTrapCount] = useState(0);
     const [creatureCount, setCreatureCount] = useState(0);
     const roomContainerRef = useRef<HTMLDivElement>(null);
     const transitionDuration = 100;
@@ -43,6 +45,7 @@ export default function Room() {
         setNpcCount(Math.floor(Math.random()*4));
         setCreatureCount(Math.floor(Math.random()*3));
         setItemCount(Math.floor(Math.random()*3));
+        setTrapCount(Math.floor(Math.random()*2));
         const tempSounds: Set<string> = new Set<string>;
         const soundsEndpoint = '/api/attributes/random-weighted/location-sounds';
 
@@ -131,6 +134,10 @@ export default function Room() {
                 <p className="font-bold">{getCountLabel(itemCount, 'item')}</p>
                 <div className="flex gap-4">
                     {getComponentArray(itemCount, Item)}
+                </div>
+                <p className="font-bold">{getCountLabel(trapCount, 'trap')}</p>
+                <div className="flex gap-4">
+                    {getComponentArray(trapCount, Trap)}
                 </div>
             </div>
             <div className="m-auto">

@@ -505,7 +505,8 @@ export const itemType: AttributeList = {
     "Desk": 0.5,
     "Gemstone": 0.5,
     "Jewel": 0.5,
-    "Painting": 0.5
+    "Painting": 0.5,
+    "Key": 0.5
 }
 
 export const itemCondition: AttributeList = {
@@ -519,6 +520,31 @@ export const itemCondition: AttributeList = {
     "Dusty": 0.5,
     "Clean": 0.5,
     "Burned": 0.5
+}
+
+export const trapType: AttributeList = {
+    "Mechanical": 0.5,
+    "Magical": 0.5
+}
+
+export const trapTrigger: AttributeList = {
+    "Pressure plate": 0.5,
+    "Tripwire": 0.5,
+    "Doorknob": 0.5
+}
+
+export const trapEffect: AttributeList = {
+    "Hidden arrow": 0.5,
+    "Spike pit opens": 0.5,
+    "Room starts flooding": 0.5,
+    "Activator is poisoned": 0.5,
+    "Blast of fire": 0.5,
+}
+
+export const trapDanger: AttributeList = {
+    "Setback": 0.5,
+    "Dangerous": 0.5,
+    "Deadly": 0.5
 }
 
 // other attributes

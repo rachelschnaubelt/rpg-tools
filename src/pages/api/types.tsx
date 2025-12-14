@@ -41,6 +41,13 @@ interface Item {
     condition: string
 }
 
+interface Trap {
+    type: string,
+    trigger: string,
+    effect: string, 
+    danger: string
+}
+
 interface AttributeList {
     [key: string]: number
 }
