@@ -34,8 +34,8 @@ export default function Room() {
 
         await timeout(transitionDuration);
 
-        await setAttribute('/api/attributes/random-weighted/room-types', setRoomType);
-        await setAttribute('/api/attributes/random-weighted/lighting-types', setLightingType);
+        await setAttribute('/api/attributes/random-weighted/location-room-types', setRoomType);
+        await setAttribute('/api/attributes/random-weighted/location-lighting-types', setLightingType);
         await setAttribute('/api/attributes/random-weighted/location-conditions', setLocationCondition);
         await setAttribute('/api/attributes/random-weighted/location-temperature', setLocationTemperature);
         await setAttribute('/api/attributes/random-weighted/location-size', setLocationSize);

@@ -1,4 +1,4 @@
-export const roomTypes: AttributeList = {
+export const locationRoomTypes: AttributeList = {
     "Porch": 0.5,
     "Foyer": 0.5,
     "Cloak room": 0.5,
@@ -100,7 +100,7 @@ export const roomTypes: AttributeList = {
     "Display Room": 0.5
 }
 
-export const lightingTypes: AttributeList = {
+export const locationLightingTypes: AttributeList = {
     "Ambient": 0.5,
     "Brilliant": 0.5,
     "Cozy": 0.5,
