@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef, useState } from "react"
 import Button from "../button/button";
 import { setAttribute, timeout } from "../utils/utils";
@@ -113,7 +115,7 @@ export default function Room() {
         <div className="flex flex-col min-h-full">
             <div className={`transition duration-${transitionDuration} overflow-hidden opacity-0 flex-1`} ref={roomContainerRef}>
                 {roomType ? <h3 className='text-xl text-center'>{roomType}</h3> : ''}
-                <div className='flex gap-4 justify-between mt-4'>
+                <div className='flex gap-4 justify-between mt-4 flex-wrap'>
                     {getAttributeContainer(lightingType, 'Lighting')}
                     {getAttributeContainer(locationCondition, 'Condition')}
                     {getAttributeContainer(locationTemperature, 'Temperature')}
