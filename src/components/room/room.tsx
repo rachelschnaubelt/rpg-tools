@@ -11,7 +11,11 @@ import Item from "../item/item";
 import Trap from "../trap/trap";
 import Accordion from "../accordion/accordion";
 
-export default function Room() {
+type Props = {
+    generatorConfigs: { [key: string]: string | boolean }
+}
+
+export default function Room({ generatorConfigs }: Props) {
     const [roomType, setRoomType] = useState('');
     const [lightingType, setLightingType] = useState('');
     const [locationCondition, setLocationCondition] = useState('');
@@ -37,41 +41,43 @@ export default function Room() {
         await timeout(transitionDuration);
 
         await setAttribute('/api/attributes/random-weighted/location-room-types', setRoomType);
-        await setAttribute('/api/attributes/random-weighted/location-lighting-types', setLightingType);
-        await setAttribute('/api/attributes/random-weighted/location-conditions', setLocationCondition);
-        await setAttribute('/api/attributes/random-weighted/location-temperature', setLocationTemperature);
-        await setAttribute('/api/attributes/random-weighted/location-size', setLocationSize);
-        await setAttribute('/api/attributes/random-weighted/location-scent', setLocationScent);
-        await setAttribute('/api/attributes/random-weighted/location-atmospheres', setLocationAtmosphere);
-        await setAttribute('/api/attributes/random-weighted/location-unique-traits', setLocationUniqueTrait);
-        setWindowCount(Math.floor(Math.random() * 4));
-        setExitcount(Math.ceil(Math.random() * 3));
-        setSoundsCount(Math.floor(Math.random() * 3));
-        setNpcCount(Math.floor(Math.random() * 4));
-        setCreatureCount(Math.floor(Math.random() * 3));
-        setItemCount(Math.floor(Math.random() * 3));
-        setTrapCount(Math.floor(Math.random() * 2));
-        const tempSounds: Set<string> = new Set<string>;
-        const soundsEndpoint = '/api/attributes/random-weighted/location-sounds';
-
-        for (let i = 0; i < soundsCount; i++) {
-            const sound = await fetch(soundsEndpoint)
-                .then(res => {
-                    if (res.status !== 200) {
-                        return '';
-                    }
-                    return res.json()
-                });
-            tempSounds.add(sound);
+        generatorConfigs.locationLighting && await setAttribute('/api/attributes/random-weighted/location-lighting-types', setLightingType);
+        generatorConfigs.locationCondition && await setAttribute('/api/attributes/random-weighted/location-conditions', setLocationCondition);
+        generatorConfigs.locationTemperature && await setAttribute('/api/attributes/random-weighted/location-temperature', setLocationTemperature);
+        generatorConfigs.locationSize && await setAttribute('/api/attributes/random-weighted/location-size', setLocationSize);
+        generatorConfigs.locationScent && await setAttribute('/api/attributes/random-weighted/location-scent', setLocationScent);
+        generatorConfigs.locationAtmosphere && await setAttribute('/api/attributes/random-weighted/location-atmospheres', setLocationAtmosphere);
+        generatorConfigs.locationUniqueTrait && await setAttribute('/api/attributes/random-weighted/location-unique-traits', setLocationUniqueTrait);
+        generatorConfigs.locationWindows && setWindowCount(Math.floor(Math.random() * 4));
+        generatorConfigs.locationExits && setExitcount(Math.ceil(Math.random() * 3));
+        generatorConfigs.locationNPCs && setNpcCount(Math.floor(Math.random() * 4));
+        generatorConfigs.locationCreatures && setCreatureCount(Math.floor(Math.random() * 3));
+        generatorConfigs.locationItems && setItemCount(Math.floor(Math.random() * 3));
+        generatorConfigs.locationTraps && setTrapCount(Math.floor(Math.random() * 2));
+        
+        if (generatorConfigs.locationSound) {
+            setSoundsCount(Math.floor(Math.random() * 3));
+            const tempSounds: Set<string> = new Set<string>;
+            const soundsEndpoint = '/api/attributes/random-weighted/location-sounds';
+            for (let i = 0; i < soundsCount; i++) {
+                const sound = await fetch(soundsEndpoint)
+                    .then(res => {
+                        if (res.status !== 200) {
+                            return '';
+                        }
+                        return res.json()
+                    });
+                tempSounds.add(sound);
+            }
+            setLocationSounds(tempSounds);
         }
-        setLocationSounds(tempSounds);
 
         // await timeout(0);
         roomContainerRef.current?.classList.remove('opacity-0');
     }
 
     const getComponentList = (count: number, Component: any) => {
-        if(count <= 0) {
+        if (count <= 0) {
             return '';
         }
         const arr = [];
@@ -116,33 +122,45 @@ export default function Room() {
             <div className={`transition duration-${transitionDuration} overflow-hidden opacity-0 flex-1`} ref={roomContainerRef}>
                 {roomType ? <h3 className='text-xl text-center'>{roomType}</h3> : ''}
                 <div className='flex gap-4 justify-between mt-4 flex-wrap'>
-                    {getAttributeContainer(lightingType, 'Lighting')}
-                    {getAttributeContainer(locationCondition, 'Condition')}
-                    {getAttributeContainer(locationTemperature, 'Temperature')}
-                    {getAttributeContainer(locationSize, 'Size')}
-                    {getAttributeContainer(locationAtmosphere, 'Atmosphere')}
-                    {getAttributeContainer(locationScent, 'Scent')}
-                    {getAttributeContainer(Array.from(locationSounds).join(', '), 'Sounds')}
-                    {getAttributeContainer(locationUniqueTrait, 'Unique trait')}
+                    {generatorConfigs.locationLighting && getAttributeContainer(lightingType, 'Lighting')}
+                    {generatorConfigs.locationCondition && getAttributeContainer(locationCondition, 'Condition')}
+                    {generatorConfigs.locationTemperature && getAttributeContainer(locationTemperature, 'Temperature')}
+                    {generatorConfigs.locationSize && getAttributeContainer(locationSize, 'Size')}
+                    {generatorConfigs.locationAtmosphere && getAttributeContainer(locationAtmosphere, 'Atmosphere')}
+                    {generatorConfigs.locationScent && getAttributeContainer(locationScent, 'Scent')}
+                    {generatorConfigs.locationSound && getAttributeContainer(Array.from(locationSounds).join(', '), 'Sounds')}
+                    {generatorConfigs.locationUniqueTrait && getAttributeContainer(locationUniqueTrait, 'Unique trait')}
                 </div>
-                <Accordion title={getCountLabel(windowCount, 'window')}>
-                    {getComponentList(windowCount, Window)}
-                </Accordion>
-                <Accordion title={getCountLabel(exitCount, 'exit')}>
-                    {getComponentList(exitCount, Exit)}
-                </Accordion>
-                <Accordion title={getCountLabel(npcCount, 'NPC')}>
-                    {getComponentList(npcCount, NPC)}
-                </Accordion>
-                <Accordion title={getCountLabel(creatureCount, 'creature')}>
-                    {getComponentList(creatureCount, Creature)}
-                </Accordion>
-                <Accordion title={getCountLabel(itemCount, 'item')}>
-                    {getComponentList(itemCount, Item)}
-                </Accordion>
-                <Accordion title={getCountLabel(trapCount, 'trap')}>
-                    {getComponentList(trapCount, Trap)}
-                </Accordion>
+                {generatorConfigs.locationWindows &&
+                    <Accordion title={getCountLabel(windowCount, 'window')}>
+                        {getComponentList(windowCount, Window)}
+                    </Accordion>
+                }
+                {generatorConfigs.locationExits &&
+                    <Accordion title={getCountLabel(exitCount, 'exit')}>
+                        {getComponentList(exitCount, Exit)}
+                    </Accordion>
+                }
+                {generatorConfigs.locationNPCs &&
+                    <Accordion title={getCountLabel(npcCount, 'NPC')}>
+                        {getComponentList(npcCount, NPC)}
+                    </Accordion>
+                }
+                {generatorConfigs.locationCreatures &&
+                    <Accordion title={getCountLabel(creatureCount, 'creature')}>
+                        {getComponentList(creatureCount, Creature)}
+                    </Accordion>
+                }
+                {generatorConfigs.locationItems &&
+                    <Accordion title={getCountLabel(itemCount, 'item')}>
+                        {getComponentList(itemCount, Item)}
+                    </Accordion>
+                }
+                {generatorConfigs.locationTraps &&
+                    <Accordion title={getCountLabel(trapCount, 'trap')}>
+                        {getComponentList(trapCount, Trap)}
+                    </Accordion>
+                }
             </div>
             <div className="m-auto">
                 <Button onClick={updateRoom}>Regenerate Room</Button>

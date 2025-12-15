@@ -22,7 +22,7 @@ export default function Accordion({ title, children }: buttonProps) {
         <div>
             <div
                 onClick={accordionHandler}
-                className="cursor-pointer font-bold">
+                className={`${children && 'cursor-pointer'} font-bold`}>
                 <p className="flex justify-between">
                     <span>{title}</span>
                     <span>{children ? (isOpen ? '-' : '+') : ''}</span>
