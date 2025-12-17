@@ -5,9 +5,11 @@ import Button from "@/components/button/button";
 import Checkbox from "@/components/checkbox/checkbox";
 import Drawer from "@/components/drawer/drawer";
 import { useState } from "react";
+import RangeSlider from "@/components/range-slider/range-slider";
 
 export default function Page() {
-
+  const [sliderMin, setSliderMin] = useState<number>(2);
+  const [sliderMax, setSliderMax] = useState<number>(7);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const [roomConfigs, setRoomConfigs] = useState<{ [key: string]: string | boolean }>({
     "locationLighting": true,
@@ -51,6 +53,8 @@ export default function Page() {
     )
   }
 
+  
+
   return (
     <>
       <Drawer isOpen={isDrawerOpen} drawerClose={handleDrawerClose} drawerPosition="right">
@@ -70,6 +74,7 @@ export default function Page() {
           {getCheckboxContainer('locationCreatures', "Creatures")}
           {getCheckboxContainer('locationItems', "Items")}
           {getCheckboxContainer('locationTraps', "Traps")}
+          <RangeSlider max={10} min={0} selectedMax={sliderMax} selectedMin={sliderMin} label="range" setMax={setSliderMax} setMin={setSliderMin} />
         </div>
       </Drawer>
       <Button
