@@ -12,27 +12,30 @@ type Props = {
 }
 
 export default function RangeSlider({ max, min, selectedMax, selectedMin, label, setMax, setMin }: Props) {
+  const [selectedSlider, setSelectedSlider] = useState('');
 
-  // TODO: fix logic behind max/min (gets stuck at highest value)
-  // TODO: add styling for between values
+  // TODO: fix styling
     const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const slider = e.target;
         const value = parseInt(slider.value);
-        if(slider.classList.contains('slider-min') && !isNaN(value)) {
-          if(value && value <= selectedMax) {
-            setMin(value);
-          }
-          else {
+        if(slider.classList.contains('slider-min')) {
+          if(value >= selectedMax) {
             setMin(selectedMax);
           }
-        }
-        else if(slider.classList.contains('slider-max') && !isNaN(value)) {
-          if(value >= selectedMin) {
-            setMax(value);
-          }
           else {
+            setMin(value);
+          }
+          setSelectedSlider('min');
+        }
+        else if(slider.classList.contains('slider-max')) {
+          if(value <= selectedMin) {
+            console.log('set to selected min')
             setMax(selectedMin);
           }
+          else {
+            setMax(value);
+          }
+          setSelectedSlider('max');
         }
       }
 
@@ -40,8 +43,8 @@ export default function RangeSlider({ max, min, selectedMax, selectedMin, label,
         <div className="range_container flex flex-col w-full">
           <p>{label}</p>
             <div className="sliders_control relative min-h-1 my-2">
-                <input className="slider-min w-full absolute pointer-events-none appearance-none h-px" type="range" value={selectedMin} min={min} max={max} onChange={handleSliderChange} />
-                <input className="slider-max w-full absolute pointer-events-none appearance-none h-0 z-1" type="range" value={selectedMax} min={min} max={max} onChange={handleSliderChange} />
+                <input className={`slider-min w-full absolute pointer-events-none appearance-none h-px ${selectedSlider === 'min' ? 'z-1' : ''}`} type="range" value={selectedMin} min={min} max={max} onChange={handleSliderChange} />
+                <input className={`slider-max w-full absolute pointer-events-none appearance-none h-0 ${selectedSlider === 'max' ? 'z-1' : ''}`} type="range" value={selectedMax} min={min} max={max} onChange={handleSliderChange} />
             </div>
             <div className="form_control relative flex justify-between">
                 <div className="form_control_container">

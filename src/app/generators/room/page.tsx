@@ -8,10 +8,10 @@ import { useState } from "react";
 import RangeSlider from "@/components/range-slider/range-slider";
 
 export default function Page() {
-  const [sliderMin, setSliderMin] = useState<number>(2);
-  const [sliderMax, setSliderMax] = useState<number>(7);
+  const [exitCountMin, setExitCountMin] = useState<number>(2);
+  const [exitCountMax, setExitCountMax] = useState<number>(7);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
-  const [roomConfigs, setRoomConfigs] = useState<{ [key: string]: string | boolean }>({
+  const [roomConfigs, setRoomConfigs] = useState<{ [key: string]: string | boolean | number }>({
     "locationLighting": true,
     "locationCondition": true,
     "locationTemperature": true,
@@ -26,6 +26,8 @@ export default function Page() {
     "locationCreatures": true,
     "locationItems": true,
     "locationTraps": true,
+    "locationExitCountMin": exitCountMin,
+    "locationExitCountMax": exitCountMax
   });
 
   const handleDrawer = () => {
@@ -74,7 +76,7 @@ export default function Page() {
           {getCheckboxContainer('locationCreatures', "Creatures")}
           {getCheckboxContainer('locationItems', "Items")}
           {getCheckboxContainer('locationTraps', "Traps")}
-          <RangeSlider max={10} min={0} selectedMax={sliderMax} selectedMin={sliderMin} label="range" setMax={setSliderMax} setMin={setSliderMin} />
+          <RangeSlider max={10} min={0} selectedMax={exitCountMax} selectedMin={exitCountMin} label="range" setMax={setExitCountMax} setMin={setExitCountMin} />
         </div>
       </Drawer>
       <Button

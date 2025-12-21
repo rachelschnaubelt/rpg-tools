@@ -12,7 +12,7 @@ import Trap from "../trap/trap";
 import Accordion from "../accordion/accordion";
 
 type Props = {
-    generatorConfigs: { [key: string]: string | boolean }
+    generatorConfigs: { [key: string]: string | boolean | number }
 }
 
 export default function Room({ generatorConfigs }: Props) {
@@ -35,6 +35,12 @@ export default function Room({ generatorConfigs }: Props) {
     const roomContainerRef = useRef<HTMLDivElement>(null);
     const transitionDuration = 100;
 
+    const setRandomCount = (maxKey: string, minKey: string, setter: React.Dispatch<React.SetStateAction<number>>) => {
+        const maxCount = generatorConfigs[maxKey] as number;
+        const minCount = generatorConfigs[minKey] as number;
+        setter(Math.floor(Math.random() * (maxCount - minCount + 1)) + minCount);
+    }
+
     const updateRoom = async () => {
         roomContainerRef.current?.classList.add('opacity-0');
 
@@ -49,7 +55,7 @@ export default function Room({ generatorConfigs }: Props) {
         generatorConfigs.locationAtmosphere && await setAttribute('/api/attributes/random-weighted/location-atmospheres', setLocationAtmosphere);
         generatorConfigs.locationUniqueTrait && await setAttribute('/api/attributes/random-weighted/location-unique-traits', setLocationUniqueTrait);
         generatorConfigs.locationWindows && setWindowCount(Math.floor(Math.random() * 4));
-        generatorConfigs.locationExits && setExitcount(Math.ceil(Math.random() * 3));
+        generatorConfigs.locationExits && setRandomCount('locationExitCountMax', 'locationExitCountMin', setExitcount);
         generatorConfigs.locationNPCs && setNpcCount(Math.floor(Math.random() * 4));
         generatorConfigs.locationCreatures && setCreatureCount(Math.floor(Math.random() * 3));
         generatorConfigs.locationItems && setItemCount(Math.floor(Math.random() * 3));
