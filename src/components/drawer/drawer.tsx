@@ -11,7 +11,7 @@ export default function Drawer({ children, drawerClose, drawerPosition = "left",
 
     return (
         <>
-            <aside className={`fixed ${drawerPosition}-0 top-0 bottom-0 z-3 bg-white p-8 ${isOpen ? '' : 'hidden'}`}>
+            <aside className={`fixed ${drawerPosition}-0 top-0 bottom-0 overflow-y-scroll z-3 bg-white p-8 ${isOpen ? '' : 'hidden'}`}>
                 {children}
             </aside>
             <div 

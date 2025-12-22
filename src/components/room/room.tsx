@@ -27,7 +27,7 @@ export default function Room({ generatorConfigs }: Props) {
     const [soundsCount, setSoundsCount] = useState(0);
     const [locationSounds, setLocationSounds] = useState<Set<string>>(new Set<string>);
     const [windowCount, setWindowCount] = useState(0);
-    const [exitCount, setExitcount] = useState(0);
+    const [exitCount, setExitCount] = useState(0);
     const [npcCount, setNpcCount] = useState(0);
     const [itemCount, setItemCount] = useState(0);
     const [trapCount, setTrapCount] = useState(0);
@@ -39,10 +39,13 @@ export default function Room({ generatorConfigs }: Props) {
         const maxCount = generatorConfigs[maxKey] as number;
         const minCount = generatorConfigs[minKey] as number;
         setter(Math.floor(Math.random() * (maxCount - minCount + 1)) + minCount);
+        console.log(minCount, maxCount);
     }
 
     const updateRoom = async () => {
         roomContainerRef.current?.classList.add('opacity-0');
+
+        console.log(generatorConfigs);
 
         await timeout(transitionDuration);
 
@@ -54,12 +57,12 @@ export default function Room({ generatorConfigs }: Props) {
         generatorConfigs.locationScent && await setAttribute('/api/attributes/random-weighted/location-scent', setLocationScent);
         generatorConfigs.locationAtmosphere && await setAttribute('/api/attributes/random-weighted/location-atmospheres', setLocationAtmosphere);
         generatorConfigs.locationUniqueTrait && await setAttribute('/api/attributes/random-weighted/location-unique-traits', setLocationUniqueTrait);
-        generatorConfigs.locationWindows && setWindowCount(Math.floor(Math.random() * 4));
-        generatorConfigs.locationExits && setRandomCount('locationExitCountMax', 'locationExitCountMin', setExitcount);
-        generatorConfigs.locationNPCs && setNpcCount(Math.floor(Math.random() * 4));
-        generatorConfigs.locationCreatures && setCreatureCount(Math.floor(Math.random() * 3));
-        generatorConfigs.locationItems && setItemCount(Math.floor(Math.random() * 3));
-        generatorConfigs.locationTraps && setTrapCount(Math.floor(Math.random() * 2));
+        generatorConfigs.locationWindows && setRandomCount('locationWindowCountMax', 'locationWindowCountMin', setWindowCount);
+        generatorConfigs.locationExits && setRandomCount('locationExitCountMax', 'locationExitCountMin', setExitCount);
+        generatorConfigs.locationNPCs && setRandomCount('locationNpcCountMax', 'locationNpcCountMin', setNpcCount);
+        generatorConfigs.locationCreatures && setRandomCount('locationCreatureCountMax', 'locationCreatureCountMin', setCreatureCount);
+        generatorConfigs.locationItems && setRandomCount('locationItemCountMax', 'locationItemCountMin', setItemCount);
+        generatorConfigs.locationTraps && setRandomCount('locationTrapCountMax', 'locationTrapCountMin', setTrapCount);
         
         if (generatorConfigs.locationSound) {
             setSoundsCount(Math.floor(Math.random() * 3));
