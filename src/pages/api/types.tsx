@@ -2,7 +2,12 @@ interface Room {
     type: string, // examples: Living room, Kitchen, Gallery, Study
     lighting: string, // examples: Overhead florescents, Candlelit, Dim, Pitch-black
     condition: string, // examples: Overgrown, Abandoned, Desolate, Pristine
-    size: string, // examples: Small, Average, Large, Huge
+    size: string, // examples: Small, Average, Large, Huge,
+    atmosphere: string,
+    scent: string,
+    sounds: string,
+    temperature: string,
+    uniqueTrait: string
 }
 
 interface Window {

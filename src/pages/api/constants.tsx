@@ -1,7 +1,7 @@
 import * as content from "./content"
 
-export const ATTRIBUTE_LIST_ENDPOINTS: {[key: string]: AttributeList} = {
-   'creature-behavior': content.creatureBehavior,
+export const ATTRIBUTE_LIST_ENDPOINTS: { [key: string]: AttributeList } = {
+    'creature-behavior': content.creatureBehavior,
     'creature-condition': content.creatureCondition,
     'creature-size': content.creatureSize,
     'creature-type': content.creatureType,

@@ -15,15 +15,20 @@ type Props = {
     generatorConfigs: { [key: string]: string | boolean | number }
 }
 
+const emptyRoom = {
+    type: '',
+    lighting: '', 
+    condition: '',
+    size: '',
+    atmosphere: '',
+    scent: '',
+    sounds: '',
+    temperature: '',
+    uniqueTrait: ''
+}
+
 export default function Room({ generatorConfigs }: Props) {
-    const [roomType, setRoomType] = useState('');
-    const [lightingType, setLightingType] = useState('');
-    const [locationCondition, setLocationCondition] = useState('');
-    const [locationTemperature, setLocationTemperature] = useState('');
-    const [locationSize, setLocationSize] = useState('');
-    const [locationScent, setLocationScent] = useState('');
-    const [locationAtmosphere, setLocationAtmosphere] = useState('');
-    const [locationUniqueTrait, setLocationUniqueTrait] = useState('');
+    const [room, setRoom] = useState<Room>(emptyRoom);
     const [soundsCount, setSoundsCount] = useState(0);
     const [locationSounds, setLocationSounds] = useState<Set<string>>(new Set<string>);
     const [windowCount, setWindowCount] = useState(0);
@@ -39,24 +44,15 @@ export default function Room({ generatorConfigs }: Props) {
         const maxCount = generatorConfigs[maxKey] as number;
         const minCount = generatorConfigs[minKey] as number;
         setter(Math.floor(Math.random() * (maxCount - minCount + 1)) + minCount);
-        console.log(minCount, maxCount);
     }
 
     const updateRoom = async () => {
         roomContainerRef.current?.classList.add('opacity-0');
 
-        console.log(generatorConfigs);
-
         await timeout(transitionDuration);
 
-        await setAttribute('/api/attributes/random-weighted/location-room-types', setRoomType);
-        generatorConfigs.locationLighting && await setAttribute('/api/attributes/random-weighted/location-lighting-types', setLightingType);
-        generatorConfigs.locationCondition && await setAttribute('/api/attributes/random-weighted/location-conditions', setLocationCondition);
-        generatorConfigs.locationTemperature && await setAttribute('/api/attributes/random-weighted/location-temperature', setLocationTemperature);
-        generatorConfigs.locationSize && await setAttribute('/api/attributes/random-weighted/location-size', setLocationSize);
-        generatorConfigs.locationScent && await setAttribute('/api/attributes/random-weighted/location-scent', setLocationScent);
-        generatorConfigs.locationAtmosphere && await setAttribute('/api/attributes/random-weighted/location-atmospheres', setLocationAtmosphere);
-        generatorConfigs.locationUniqueTrait && await setAttribute('/api/attributes/random-weighted/location-unique-traits', setLocationUniqueTrait);
+        await setAttribute('/api/rooms/random-weighted', setRoom);
+
         generatorConfigs.locationWindows && setRandomCount('locationWindowCountMax', 'locationWindowCountMin', setWindowCount);
         generatorConfigs.locationExits && setRandomCount('locationExitCountMax', 'locationExitCountMin', setExitCount);
         generatorConfigs.locationNPCs && setRandomCount('locationNpcCountMax', 'locationNpcCountMin', setNpcCount);
@@ -129,16 +125,16 @@ export default function Room({ generatorConfigs }: Props) {
     return (
         <div className="flex flex-col min-h-full">
             <div className={`transition duration-${transitionDuration} overflow-hidden opacity-0 flex-1`} ref={roomContainerRef}>
-                {roomType ? <h3 className='text-xl text-center'>{roomType}</h3> : ''}
+                {room.type ? <h3 className='text-xl text-center'>{room.type}</h3> : ''}
                 <div className='flex gap-4 justify-between mt-4 flex-wrap'>
-                    {generatorConfigs.locationLighting && getAttributeContainer(lightingType, 'Lighting')}
-                    {generatorConfigs.locationCondition && getAttributeContainer(locationCondition, 'Condition')}
-                    {generatorConfigs.locationTemperature && getAttributeContainer(locationTemperature, 'Temperature')}
-                    {generatorConfigs.locationSize && getAttributeContainer(locationSize, 'Size')}
-                    {generatorConfigs.locationAtmosphere && getAttributeContainer(locationAtmosphere, 'Atmosphere')}
-                    {generatorConfigs.locationScent && getAttributeContainer(locationScent, 'Scent')}
+                    {generatorConfigs.locationLighting && getAttributeContainer(room.lighting, 'Lighting')}
+                    {generatorConfigs.locationCondition && getAttributeContainer(room.condition, 'Condition')}
+                    {generatorConfigs.locationTemperature && getAttributeContainer(room.temperature, 'Temperature')}
+                    {generatorConfigs.locationSize && getAttributeContainer(room.size, 'Size')}
+                    {generatorConfigs.locationAtmosphere && getAttributeContainer(room.atmosphere, 'Atmosphere')}
+                    {generatorConfigs.locationScent && getAttributeContainer(room.scent, 'Scent')}
                     {generatorConfigs.locationSound && getAttributeContainer(Array.from(locationSounds).join(', '), 'Sounds')}
-                    {generatorConfigs.locationUniqueTrait && getAttributeContainer(locationUniqueTrait, 'Unique trait')}
+                    {generatorConfigs.locationUniqueTrait && getAttributeContainer(room.uniqueTrait, 'Unique trait')}
                 </div>
                 {generatorConfigs.locationWindows &&
                     <Accordion title={getCountLabel(windowCount, 'window')}>
